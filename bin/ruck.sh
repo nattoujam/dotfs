@@ -21,11 +21,14 @@ else
 fi
 
 cd $path
-remote=`git ls-remote origin $branch | awk '{print $1}'`
+remote=`git ls-remote origin $branch 2>/dev/null | awk '{print $1}'`
+# remote=`git ls-remote origin $branch | awk '{print $1}'`
 local_b=`git log -1 $branch | awk 'NR==1 {print $2}'`
 
-# echo $remote
-# echo $local_b
+if [ -z $remote ]; then
+  echo Could not communicate to remote branch ...
+  exit 0
+fi
 
 if [ $remote = $local_b ]; then
   # up to date

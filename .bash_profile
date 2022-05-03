@@ -39,7 +39,7 @@ if [ -f ~/.wsl2 ]; then
 fi
 
 # dotfiles master check
-ruck ~/dotfiles
+ruck ~/dotfs
 
 export PROMPT_DIRTRIM=3
 export LS_COLORS='rs=0:di=38;5;33:ln=38;5;51:mh=00:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=01;37;41:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;40'
