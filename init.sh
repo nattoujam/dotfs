@@ -10,8 +10,8 @@ path=`pwd`
 
 sh $path/uninstall.sh
 
-echo "link $path/.bash_aliases"
-ln -s $path/.bash_aliases ~/
+echo "link $path/.aliases"
+ln -s $path/.aliases ~/
 echo "link $path/.bash_profile"
 ln -s $path/.bash_profile ~/
 echo "link $path/.inputrc"
@@ -41,7 +41,7 @@ else
 }
 fi
 
-read -p "Your platform (wsl1/wsl2/other):" platform
+read -p "Your platform (wsl1/wsl2/other): " platform
 case "$platform" in
   "wsl1" )
     {

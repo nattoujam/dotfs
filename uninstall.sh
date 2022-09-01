@@ -5,15 +5,29 @@
 # Last Modified Date: 2022 05/04
 # Last Modified By  : nattoujam <Public.Kyuuanago@gmail.com>
 
+unlink_if_needs () {
+  if [ -e $1 ]
+  then
+    if [ $2 -eq 1 ]
+    then
+      echo "sudo unlink: $1"
+      sudo unlink $1
+    else
+      echo "unlink: $1"
+      unlink $1
+    fi
+  fi
+}
+
 echo uninstall dot files
-unlink ~/.bash_aliases
-unlink ~/.bash_profile
-unlink ~/.inputrc
-unlink ~/.latexmkrc
-unlink ~/.tmux.conf
-unlink ~/.wsl1
-unlink ~/.wsl2
+unlink_if_needs ~/.aliases 0
+unlink_if_needs ~/.bash_profile 0
+unlink_if_needs ~/.inputrc 0
+unlink_if_needs ~/.latexmkrc 0
+unlink_if_needs ~/.tmux.conf 0
+unlink_if_needs ~/.wsl1 0
+unlink_if_needs ~/.wsl2 0
 
 echo uninstall my commands
-sudo unlink /usr/local/bin/ruck
-sudo unlink /usr/local/bin/git-init-config
+unlink_if_needs /usr/local/bin/ruck 1
+unlink_if_needs /usr/local/bin/git-init-config 1

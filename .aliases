@@ -3,6 +3,12 @@ alias rm='rm -i'
 alias lp='leafpad'
 alias ..='cd ..'
 
+# ls
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
 #kotlin
 alias kotlinjar='kotlinc -include-runtime -d'
 
