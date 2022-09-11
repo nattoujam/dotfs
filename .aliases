@@ -9,8 +9,16 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -lF'
 
-#kotlin
+# kotlin
 alias kotlinjar='kotlinc -include-runtime -d'
+
+# git
+alias g='git'
+
+# docker
+alias d='docker'
+alias dc='docker-compose'
+alias dps='docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
 
 # ========
 # = typo =
