@@ -1,0 +1,79 @@
+alias pbcopy='xsel --clipboard --input'
+alias rm='rm -i'
+alias lp='leafpad'
+alias ..='cd ..'
+
+# ls
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -lF'
+
+# kotlin
+alias kotlinjar='kotlinc -include-runtime -d'
+
+# git
+alias g='git'
+
+# docker
+alias d='docker'
+alias dc='docker-compose'
+alias dps='docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"'
+
+# ========
+# = typo =
+# ========
+alias c='cd'
+alias bim='vim'
+alias ivm='vim'
+
+# ===========
+# = windows =
+# ===========
+# explorer
+# open explorer to current directory
+# $ exp .
+alias exp='explorer.exe'
+
+# ============
+# = functoin =
+# ============
+# cd and ls
+# https://qiita.com/b4b4r07/items/8cf5d1c8b3fbfcf01a5d
+cd () {
+  builtin cd "$@" && l
+}
+
+# edit ~/.*rc
+edrc () {
+  case $SHELL in
+    *bash)
+      vim ~/.bashrc
+      ;;
+    *zsh)
+      vim ~/.zshrc
+      ;;
+    *)
+      echo "Unsurported shell: $SHELL"
+      exit 1
+      ;; 
+  esac
+}
+
+# source ~/.*rc
+src () {
+  case $SHELL in
+    *bash)
+      echo 'load ~/.bashrc ...'
+      . ~/.bashrc
+      ;;
+    *zsh)
+      echo 'load ~/.zshrc ...'
+      . ~/.zshrc
+      ;;
+    *)
+      echo "Unsurported shell: $SHELL"
+      exit 1
+      ;; 
+  esac
+}
