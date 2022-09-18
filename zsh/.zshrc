@@ -87,7 +87,7 @@ if [ ! -e ~/.zplug/init.zsh ]
 then
   # install zplug
   curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-  sleep 0.1
+  sleep 0.1  # ないと93行目のsourceコマンド時に~/.zplug/init.zshがないよと怒られる
 fi
 
 source ~/.zplug/init.zsh
