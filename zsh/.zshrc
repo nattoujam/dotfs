@@ -83,6 +83,13 @@ prompt_themes+=( daily )
 # ==========================================
 # {{{
 
+if [ ! -e ~/.zplug/init.zsh ]
+then
+  # install zplug
+  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+  sleep 0.1
+fi
+
 source ~/.zplug/init.zsh
 
 # history common settings
