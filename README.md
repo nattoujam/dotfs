@@ -1,10 +1,17 @@
 # dotfs
-## bash
-- comming soon...
-
-## zsh
+## Usage
+### bash
 ```
-$ dotfs/zsh/init.sh
-$ source ~/.zshrc
-$ zplug install
+git clone https://github.com/nattoujam/dotfs.git
+./dotfs/zsh/init.sh
+```
+
+### zsh
+```
+sudo apt install zsh
+chsh -s `which zsh`
+git clone https://github.com/nattoujam/dotfs.git
+./dotfs/zsh/init.sh
+zsh
+zplug install
 ```
