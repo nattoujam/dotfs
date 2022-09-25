@@ -62,3 +62,10 @@ sudo ln -s $path/bin/ruck.sh /usr/local/bin/ruck
 echo 'install git-init-config'
 sudo ln -s $path/bin/git-init-config.sh /usr/local/bin/git-init-config
 sudo ln -s $path/bin/git-local-nattoujam.sh /usr/local/bin/git-local-nattoujam
+
+echo 'install pyenv'
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+cd ~/.pyenv && src/configure && make -C src
+
+echo 'install pyenv-virtualenv'
+git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
