@@ -69,3 +69,11 @@ cd ~/.pyenv && src/configure && make -C src
 
 echo 'install pyenv-virtualenv'
 git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+
+if [ "$OSTYPE" == 'linux-gnu' ]
+then
+  echo 'install lazy-git'
+  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
+  curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+  sudo tar xf lazygit.tar.gz -C /usr/local/bin lazygit
+fi
