@@ -154,6 +154,10 @@ if [ -e ~/.aliases ]; then
   . ~/.aliases
 fi
 
+if [ -e ~/.zsh_private ]; then
+  . ~/.zsh_private
+fi
+
 # }}}
 
 # pyenv
