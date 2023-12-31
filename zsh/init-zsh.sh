@@ -8,3 +8,7 @@ path=`pwd`
 
 echo "link $path/.zshrc"
 ln -s $path/.zshrc ~/
+
+if [ ! -e ~/.config/dotfs/.zsh_private ]; then
+  echo '# type personale zsh config here' > ~/.config/dotfs/.zsh_private
+fi

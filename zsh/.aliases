@@ -2,6 +2,7 @@ alias pbcopy='xsel --clipboard --input'
 alias rm='rm -i'
 alias lp='leafpad'
 alias ..='cd ..'
+alias -g Z='~/.zshrc'
 
 # ls
 alias ls='ls --color=auto'
@@ -29,7 +30,6 @@ alias ivm='vim'
 
 # ===========
 # = windows =
-# ===========
 # explorer
 # open explorer to current directory
 # $ exp .
@@ -44,36 +44,3 @@ cd () {
   builtin cd "$@" && l
 }
 
-# edit ~/.*rc
-edrc () {
-  case $SHELL in
-    *bash)
-      vim ~/.bashrc
-      ;;
-    *zsh)
-      vim ~/.zshrc
-      ;;
-    *)
-      echo "Unsurported shell: $SHELL"
-      exit 1
-      ;; 
-  esac
-}
-
-# source ~/.*rc
-src () {
-  case $SHELL in
-    *bash)
-      echo 'load ~/.bashrc ...'
-      . ~/.bashrc
-      ;;
-    *zsh)
-      echo 'load ~/.zshrc ...'
-      . ~/.zshrc
-      ;;
-    *)
-      echo "Unsurported shell: $SHELL"
-      exit 1
-      ;; 
-  esac
-}

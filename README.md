@@ -1,12 +1,17 @@
 # dotfs
-## Usage
-### zsh
-```
+## Setup
+```bash
 sudo apt install zsh
 chsh -s `which zsh`
-git clone https://github.com/nattoujam/dotfs.git
-./dotfs/init.sh
+git clone https://github.com/nattoujam/dotfs.git ~/.config --branch zsh
+bash ~/.config/dotfs/init.sh
+
 zsh
-source ~/.zshrc
+. Z
 zplug install
+```
+
+## Remove
+```bash
+bash ~/.config/dotfs/unlink.sh
 ```

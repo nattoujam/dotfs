@@ -150,18 +150,16 @@ prompt daily
 # ========================
 # {{{
 
-if [ -e ~/.aliases ]; then
-  . ~/.aliases
+if [ -e ~/.config/dotfs/zsh/.aliases ]; then
+  . ~/.config/dotfs/zsh/.aliases
 fi
 
-if [ -e ~/.zsh_private ]; then
-  . ~/.zsh_private
+if [ -e ~/.config/dotfs/.zsh_private ]; then
+  . ~/.config/dotfs/.zsh_private
 fi
+
+# asdf
+. $HOME/.asdf/asdf.sh
 
 # }}}
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
