@@ -150,12 +150,12 @@ prompt daily
 # ========================
 # {{{
 
-if [ -e ~/.config/dotfs/zsh/.aliases ]; then
-  . ~/.config/dotfs/zsh/.aliases
+if [ -e ~/.config/dotfs/nattoujam/zsh/.aliases ]; then
+  . ~/.config/nattoujam/dotfs/zsh/.aliases
 fi
 
-if [ -e ~/.config/dotfs/.zsh_private ]; then
-  . ~/.config/dotfs/.zsh_private
+if [ -e ~/.config/dotfs/nattoujam/zsh/.zsh_private ]; then
+  . ~/.config/nattoujam/dotfs/zsh/.zsh_private
 fi
 
 # asdf

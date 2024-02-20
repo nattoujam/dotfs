@@ -12,9 +12,9 @@
 cd `dirname $0`
 path=`pwd`
 
-if [[ ! "$path" =~ .*"/.config/dotfs"$ ]]
+if [[ ! "$path" =~ .*"/.config/nattoujam/dotfs"$ ]]
 then
-  echo 'dotfs must be place under ~/.config'
+  echo 'dotfs must be place under ~/.config/nattoujam/'
   exit 1
 fi
 
