@@ -4,7 +4,7 @@
 # Last Modified Date: 2022 09/02
 
 unlink_if_needs () {
-  if [ -e $1 ]
+  if [ -h $1 ]
   then
     if [ $2 -eq 1 ]
     then

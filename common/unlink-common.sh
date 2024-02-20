@@ -6,7 +6,7 @@
 # Last Modified By  : nattoujam <Public.kyuuanago@gmail.com>
 
 unlink_if_needs () {
-  if [ -e $1 ]
+  if [ -h $1 ]
   then
     if [ $2 -eq 1 ]
     then
