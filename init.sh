@@ -29,5 +29,8 @@ sh $path/zsh/init-zsh.sh
 echo 'install my command'
 sh $path/bin/init-command.sh
 
+echo 'install alacritty'
+sh $path/alacritty/init-alacritty.sh
+
 echo "install other"
 sh $path/common/init-other.sh
