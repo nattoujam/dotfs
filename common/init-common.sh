@@ -12,8 +12,9 @@ echo "link $path/.inputrc"
 ln -s $path/.inputrc ~/
 echo "link $path/.latexmkrc"
 ln -s $path/.latexmkrc ~/
-echo "link $path/.tmux.conf"
-ln -s $path/.tmux.conf ~/
+echo "link $path/.config/tmux/tmux.conf"
+mkdir -p ~/.config/tmux
+ln -s $path/tmux.conf ~/.config/tmux/
 
 # link wsl settings file (if needs)
 read -p "Your platform (wsl1/wsl2/other(def)): " platform
