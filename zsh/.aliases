@@ -10,6 +10,7 @@ alias ..='cd ..'
 alias -g Z='~/.zshrc'
 alias -g A='~/.config/nattoujam/dotfs/zsh/.aliases'
 alias -g P='~/.config/nattoujam/dotfs/zsh/.zsh_private'
+alias -g DOT='~/.config/nattoujam/dotfs'
 
 # ls
 alias ls='ls --color=auto -h'
@@ -59,7 +60,7 @@ alias exp='explorer.exe'
 # }}}
 
 # ============
-# = functoin =
+# = function =
 # ============
 # {{{
 
