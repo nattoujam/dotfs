@@ -14,11 +14,11 @@ path=`pwd`
 
 if [[ ! "$path" =~ .*"/.config/nattoujam/dotfs"$ ]]
 then
-  echo 'dotfs must be place under ~/.config/nattoujam/'
+  echo "dotfs must be place under ~/.config/nattoujam/"
   exit 1
 fi
 
-sh $path/unlink.sh
+sh $path/scripts/unlink.sh
 
 echo "link common config file"
 $path/common/init-common.sh
