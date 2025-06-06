@@ -124,7 +124,7 @@ zplug "modules/directory", from:prezto
 
 # memo
 # ----
-function memo() {
+function mm() {
     if [ $# -eq 0 ]
     then
         unset memotxt
