@@ -1,9 +1,10 @@
 [window]
 decorations = "Full"
+opacity = 0.9
 
 [font]
 size = 11
-# normal = { family = "Hack" }
+normal = { family = "Monaco" }
 
 [shell]
 program = '/bin/zsh'

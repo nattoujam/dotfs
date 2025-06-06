@@ -4,4 +4,4 @@ path=`pwd`
 echo $path
 
 mkdir -p ~/.config/alacritty
-ln -s $path/alacirtty.toml ~/.config/alacritty/alacritty.toml
+ln -s $path/alacritty.toml ~/.config/alacritty/alacritty.toml
