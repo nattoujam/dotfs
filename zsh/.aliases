@@ -12,6 +12,9 @@ alias -g A='~/.config/nattoujam/dotfs/zsh/.aliases'
 alias -g P='~/.config/nattoujam/dotfs/zsh/.zsh_private'
 alias -g DOT='~/.config/nattoujam/dotfs'
 
+# -h option
+alias df='df -h'
+
 # ls
 alias ls='ls --color=auto -h'
 alias ll='ls -alF'
