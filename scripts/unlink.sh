@@ -6,6 +6,7 @@
 # Last Modified By  : nattoujam <Public.kyuuanago@gmail.com>
 
 cd `dirname $0`
+cd ..
 path=`pwd`
 
 echo 'unlink common config files'

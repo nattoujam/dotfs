@@ -6,12 +6,15 @@
 # Last Modified By  : nattoujam <Public.kyuuanago@gmail.com>
 
 cd `dirname $0`
+cd ..
 path=`pwd`
 
 echo 'common command'
-sudo apt update && sudo apt install git vim curl
+# sudo apt update && sudo apt install git vim curl
 
-if [ "$OSTYPE" == 'linux-gnu' ]
+echo $OSTYPE
+
+if [ "$OSTYPE" = 'linux-gnu' ]
 then
   echo 'install lazy-git'
   LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')

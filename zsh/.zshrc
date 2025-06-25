@@ -158,8 +158,5 @@ if [ -e ~/.config/nattoujam/dotfs/zsh/.zsh_private ]; then
   . ~/.config/nattoujam/dotfs/zsh/.zsh_private
 fi
 
-# asdf
-. $HOME/.asdf/asdf.sh
-
 # }}}
 
