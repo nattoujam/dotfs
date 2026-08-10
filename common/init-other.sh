@@ -5,6 +5,8 @@
 # Last Modified Date: 2023 12/31
 # Last Modified By  : nattoujam <Public.kyuuanago@gmail.com>
 
+. "$(dirname "$0")/../scripts/lib.sh"
+
 cd `dirname $0`
 cd ..
 path=`pwd`
@@ -31,11 +33,8 @@ then
   rm ./git-delta_amd64.deb
 
   echo "link $path/common/config.yml -> ~/.config/lazygit/config.yml"
-  if [ -e ~/.config/lazygit/config.yml ]
-  then
-    rm ~/.config/lazygit/config.yml
-  fi
-  ln -s $path/common/config.yml ~/.config/lazygit/
+  mkdir -p ~/.config/lazygit
+  link_if_needs $path/common/config.yml ~/.config/lazygit/config.yml
 
   echo 'install asdf'
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1

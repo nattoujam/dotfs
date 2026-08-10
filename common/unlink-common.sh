@@ -5,19 +5,7 @@
 # Last Modified Date: 2023 12/31
 # Last Modified By  : nattoujam <Public.kyuuanago@gmail.com>
 
-unlink_if_needs () {
-  if [ -h $1 ]
-  then
-    if [ $2 -eq 1 ]
-    then
-      echo "sudo unlink: $1"
-      sudo unlink $1
-    else
-      echo "unlink: $1"
-      unlink $1
-    fi
-  fi
-}
+. "$(dirname "$0")/../scripts/lib.sh"
 
 unlink_if_needs ~/.inputrc 0
 unlink_if_needs ~/.config/tmux/tmux.conf 0

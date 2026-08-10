@@ -5,15 +5,17 @@
 # Last Modified Date: 2023 12/31
 # Last Modified By  : nattoujam <Public.kyuuanago@gmail.com>
 
+. "$(dirname "$0")/../scripts/lib.sh"
+
 cd `dirname $0`
 cd ..
 path=`pwd`
 
 echo "link $path/.inputrc"
-ln -s $path/common/.inputrc ~/
+link_if_needs $path/common/.inputrc ~/.inputrc
 echo "link $path/.config/tmux/tmux.conf"
 mkdir -p ~/.config/tmux
-ln -s $path/common/tmux.conf ~/.config/tmux/
+link_if_needs $path/common/tmux.conf ~/.config/tmux/tmux.conf
 
 echo 'setup git config'
 git config --global user.name "nattoujam"
