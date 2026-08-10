@@ -11,32 +11,39 @@ cd `dirname $0`
 cd ..
 path=`pwd`
 
-echo 'common command'
-# sudo apt update && sudo apt install git vim curl
+echo "os family: $(os_family)"
 
-echo $OSTYPE
-
-if [ "$OSTYPE" = 'linux-gnu' ]
+echo 'install lazygit'
+if ! has_cmd lazygit
 then
-  echo 'install lazy-git'
-  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
-  curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-  sudo tar xf lazygit.tar.gz -C /usr/local/bin lazygit
+  if [ "$(os_family)" = "arch" ]
+  then
+    pkg_install lazygit ""
+  else
+    LAZYGIT_ARCH=$(uname -m | sed -e 's/aarch64/arm64/')
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
+    curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_${LAZYGIT_ARCH}.tar.gz"
+    tar xf /tmp/lazygit.tar.gz -C /tmp lazygit
+    sudo install /tmp/lazygit -D -t /usr/local/bin/
+    rm -f /tmp/lazygit.tar.gz /tmp/lazygit
+  fi
+fi
 
-  rm ./lazygit.tar.gz
+echo 'install delta'
+has_cmd delta || pkg_install git-delta git-delta
 
-  echo 'install delta'
-  DELTA_VERSION=$(curl -s "https://api.github.com/repos/dandavison/delta/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
-  curl -Lo git-delta_amd64.deb "https://github.com/dandavison/delta/releases/download/latest/git-delta_${DELTA_VERSION}_amd64.deb"
-  sudo dpkg -i ./git-delta_amd64.deb
+echo "link $path/common/config.yml -> ~/.config/lazygit/config.yml"
+mkdir -p ~/.config/lazygit
+link_if_needs $path/common/config.yml ~/.config/lazygit/config.yml
 
-  rm ./git-delta_amd64.deb
-
-  echo "link $path/common/config.yml -> ~/.config/lazygit/config.yml"
-  mkdir -p ~/.config/lazygit
-  link_if_needs $path/common/config.yml ~/.config/lazygit/config.yml
-
-  echo 'install asdf'
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
+echo 'install asdf'
+if ! has_cmd asdf
+then
+  ASDF_ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')
+  ASDF_VERSION=$(curl -s "https://api.github.com/repos/asdf-vm/asdf/releases/latest" | grep -Po '"tag_name": *"\K[^"]*')
+  curl -Lo /tmp/asdf.tar.gz "https://github.com/asdf-vm/asdf/releases/download/${ASDF_VERSION}/asdf-${ASDF_VERSION}-linux-${ASDF_ARCH}.tar.gz"
+  tar xf /tmp/asdf.tar.gz -C /tmp asdf
+  sudo install /tmp/asdf -D -t /usr/local/bin/
+  rm -f /tmp/asdf.tar.gz /tmp/asdf
 fi
 

@@ -57,3 +57,53 @@ link_if_needs () {
     ln -s "$src" "$dest"
   fi
 }
+
+has_cmd () {
+  command -v "$1" >/dev/null 2>&1
+}
+
+# os_family
+# /etc/os-release の ID/ID_LIKE から distro family を判定して echo する。
+# 戻り値: arch | debian | unknown
+os_family () {
+  if [ -r /etc/os-release ]
+  then
+    (
+      . /etc/os-release
+      case "${ID}:${ID_LIKE:-}" in
+        *arch*|*cachyos*) echo arch ;;
+        *ubuntu*|*debian*) echo debian ;;
+        *) echo unknown ;;
+      esac
+    )
+  else
+    echo unknown
+  fi
+}
+
+# pkg_install <arch_pkg> <debian_pkg>
+# distro family ごとのパッケージ名を渡してインストールする。
+# 対応distroにパッケージが存在しない場合は空文字を渡せばスキップする。
+pkg_install () {
+  arch_pkg=$1
+  debian_pkg=$2
+  family=$(os_family)
+
+  case "$family" in
+    arch)
+      if [ -n "$arch_pkg" ]
+      then
+        sudo pacman -S --needed --noconfirm "$arch_pkg"
+      fi
+      ;;
+    debian)
+      if [ -n "$debian_pkg" ]
+      then
+        sudo apt-get install -y "$debian_pkg"
+      fi
+      ;;
+    *)
+      echo "pkg_install: unknown os family, skip ($arch_pkg / $debian_pkg)"
+      ;;
+  esac
+}
