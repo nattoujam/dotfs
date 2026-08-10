@@ -20,5 +20,5 @@ zplug install
 
 ## Remove
 ```bash
-bash ~/.config/dotfs/nattoujam/scripts/unlink.sh
+bash ~/.config/nattoujam/dotfs/scripts/unlink.sh
 ```

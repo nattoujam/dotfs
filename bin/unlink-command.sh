@@ -19,7 +19,4 @@ unlink_if_needs () {
   fi
 }
 
-unlink_if_needs /usr/local/bin/ruck 1
-unlink_if_needs /usr/local/bin/git-init-config 1
-unlink_if_needs /usr/local/bin/git-local-nattoujam 1
 unlink_if_needs ~/.local/bin/nc-notes 0

@@ -20,7 +20,4 @@ unlink_if_needs () {
 }
 
 unlink_if_needs ~/.inputrc 0
-unlink_if_needs ~/.latexmkrc 0
 unlink_if_needs ~/.config/tmux/tmux.conf 0
-unlink_if_needs ~/.wsl1 0
-unlink_if_needs ~/.wsl2 0

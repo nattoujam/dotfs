@@ -26,16 +26,16 @@ then
   echo 'install delta'
   DELTA_VERSION=$(curl -s "https://api.github.com/repos/dandavison/delta/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
   curl -Lo git-delta_amd64.deb "https://github.com/dandavison/delta/releases/download/latest/git-delta_${DELTA_VERSION}_amd64.deb"
-  sudo dpkg install ./git-delta_amd64.dev
+  sudo dpkg -i ./git-delta_amd64.deb
 
   rm ./git-delta_amd64.deb
 
-  echo "link $path/.config/lazygit/config.yml"
+  echo "link $path/common/config.yml -> ~/.config/lazygit/config.yml"
   if [ -e ~/.config/lazygit/config.yml ]
   then
     rm ~/.config/lazygit/config.yml
   fi
-  ln -s $path/config.yml ~/.config/lazygit/
+  ln -s $path/common/config.yml ~/.config/lazygit/
 
   echo 'install asdf'
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
