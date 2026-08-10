@@ -14,3 +14,6 @@ sudo ln -s $path/ruck.sh /usr/local/bin/ruck
 echo 'install git-init-config'
 sudo ln -s $path/git-init-config.sh /usr/local/bin/git-init-config
 sudo ln -s $path/git-local-nattoujam.sh /usr/local/bin/git-local-nattoujam
+echo 'install nc-notes'
+mkdir -p ~/.local/bin
+ln -s $path/nc-notes.sh ~/.local/bin/nc-notes

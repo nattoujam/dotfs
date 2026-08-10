@@ -35,3 +35,6 @@ sh $path/alacritty/init-alacritty.sh
 
 echo "install other"
 sh $path/common/init-other.sh
+
+echo "link claude config file"
+sh $path/claude/init-claude.sh

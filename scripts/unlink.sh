@@ -17,3 +17,6 @@ sh $path/zsh/unlink-zsh.sh
 
 echo 'unlink my command'
 sh $path/bin/unlink-command.sh
+
+echo 'unlink claude config files'
+sh $path/claude/unlink-claude.sh
