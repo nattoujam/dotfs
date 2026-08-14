@@ -90,34 +90,6 @@ prompt_themes+=( daily )
 
 # }}}
 
-# zsh plugin
-# ==========================================
-# using pulugin manager: zplug
-# > https://github.com/zplug/zplug
-# ==========================================
-# {{{
-
-if [ ! -e ~/.zplug/init.zsh ]
-then
-  # install zplug
-  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-  sleep 0.1  # ないと93行目のsourceコマンド時に~/.zplug/init.zshがないよと怒られる
-fi
-
-source ~/.zplug/init.zsh
-
-# history common settings
-# --------------
-# https://github.com/sorin-ionescu/prezto/tree/master/modules/history
-zplug "modules/history", from:prezto
-
-# drectory common settings
-# ------------------------
-# https://github.com/sorin-ionescu/prezto/tree/master/modules/directory
-zplug "modules/directory", from:prezto
-
-# }}}
-
 # other function
 # ==============
 # {{{

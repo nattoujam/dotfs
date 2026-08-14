@@ -8,7 +8,6 @@ bash ~/.config/nattoujam/dotfs/scripts/init.sh <profile>
 
 zsh
 . Z
-zplug install
 ```
 
 `scripts/bootstrap.sh`はzshの導入とデフォルトシェルの変更を行う(`scripts/init.sh`より前に一度だけ実行する)。
