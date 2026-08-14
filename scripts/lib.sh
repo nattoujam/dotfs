@@ -1,6 +1,4 @@
 #!/bin/sh
-# File              : lib.sh
-# 各 init-*.sh / unlink-*.sh から source される共通関数
 
 unlink_if_needs () {
   target=$1
