@@ -19,22 +19,34 @@ then
   exit 1
 fi
 
-sh $path/scripts/unlink.sh
+. "$path/scripts/lib.sh"
 
-echo "link common config file"
-$path/common/init-common.sh
+profile=$1
+if [ -z "$profile" ]
+then
+  profile=`hostname`
+fi
 
-echo "link zsh config file"
-sh $path/zsh/init-zsh.sh
+profile_file="$path/machines/${profile}.conf"
 
-echo 'install my command'
-sh $path/bin/init-command.sh
+if [ ! -f "$profile_file" ]
+then
+  echo "machine profile not found: $profile_file"
+  echo "usage: $0 <profile>"
+  echo "available profiles:"
+  ls "$path/machines" | sed -e 's/\.conf$//' -e 's/^/  /'
+  exit 1
+fi
 
-echo 'install alacritty'
-sh $path/alacritty/init-alacritty.sh
+echo "using profile: $profile ($profile_file)"
 
-echo "install other"
-sh $path/common/init-other.sh
+sh "$path/scripts/unlink.sh" "$profile"
 
-echo "link claude config file"
-sh $path/claude/init-claude.sh
+while read -r module
+do
+  case "$module" in
+    ''|'#'*) continue ;;
+  esac
+  echo "== init: $module =="
+  sh "$path/modules/$module/init.sh"
+done < "$profile_file"

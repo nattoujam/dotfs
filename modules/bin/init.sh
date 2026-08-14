@@ -5,7 +5,7 @@
 # Last Modified Date: 2023 12/31
 # Last Modified By  : nattoujam <Public.kyuuanago@gmail.com>
 
-. "$(dirname "$0")/../scripts/lib.sh"
+. "$(dirname "$0")/../../scripts/lib.sh"
 
 cd `dirname $0`
 path=`pwd`

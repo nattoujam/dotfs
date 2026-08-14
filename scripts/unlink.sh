@@ -9,14 +9,30 @@ cd `dirname $0`
 cd ..
 path=`pwd`
 
-echo 'unlink common config files'
-sh $path/common/unlink-common.sh
+. "$path/scripts/lib.sh"
 
-echo 'unlink zsh config files'
-sh $path/zsh/unlink-zsh.sh
+profile=$1
+if [ -z "$profile" ]
+then
+  profile=`hostname`
+fi
 
-echo 'unlink my command'
-sh $path/bin/unlink-command.sh
+profile_file="$path/machines/${profile}.conf"
 
-echo 'unlink claude config files'
-sh $path/claude/unlink-claude.sh
+if [ ! -f "$profile_file" ]
+then
+  echo "machine profile not found: $profile_file"
+  echo "usage: $0 <profile>"
+  echo "available profiles:"
+  ls "$path/machines" | sed -e 's/\.conf$//' -e 's/^/  /'
+  exit 1
+fi
+
+while read -r module
+do
+  case "$module" in
+    ''|'#'*) continue ;;
+  esac
+  echo "== unlink: $module =="
+  sh "$path/modules/$module/unlink.sh"
+done < "$profile_file"

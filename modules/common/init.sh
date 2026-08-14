@@ -1,15 +1,25 @@
 #!/bin/bash
-# File              : init-other.sh
-# Author            : nattoujam <Public.kyuuanago@gmail.com>
-# Date              : 2023 12/31
-# Last Modified Date: 2023 12/31
-# Last Modified By  : nattoujam <Public.kyuuanago@gmail.com>
-
-. "$(dirname "$0")/../scripts/lib.sh"
+. "$(dirname "$0")/../../scripts/lib.sh"
 
 cd `dirname $0`
-cd ..
+cd ../..
 path=`pwd`
+
+echo "link $path/.inputrc"
+link_if_needs $path/modules/common/.inputrc ~/.inputrc
+echo "link $path/.config/tmux/tmux.conf"
+mkdir -p ~/.config/tmux
+link_if_needs $path/modules/common/tmux.conf ~/.config/tmux/tmux.conf
+
+echo 'setup git config'
+git config --global user.name "nattoujam"
+git config --global user.email "28142852+nattoujam@users.noreply.github.com"
+git config --global core.editor "vim"
+git config --global color.diff auto
+git config --global color.status auto
+git config --global color.branch auto
+git config --global core.quotepath false
+git config --global core.autocrlf input
 
 echo "os family: $(os_family)"
 
@@ -32,9 +42,9 @@ fi
 echo 'install delta'
 has_cmd delta || pkg_install git-delta git-delta
 
-echo "link $path/common/config.yml -> ~/.config/lazygit/config.yml"
+echo "link $path/modules/common/config.yml -> ~/.config/lazygit/config.yml"
 mkdir -p ~/.config/lazygit
-link_if_needs $path/common/config.yml ~/.config/lazygit/config.yml
+link_if_needs $path/modules/common/config.yml ~/.config/lazygit/config.yml
 
 echo 'install asdf'
 if ! has_cmd asdf
@@ -46,4 +56,3 @@ then
   sudo install /tmp/asdf -D -t /usr/local/bin/
   rm -f /tmp/asdf.tar.gz /tmp/asdf
 fi
-

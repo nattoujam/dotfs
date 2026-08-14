@@ -84,7 +84,7 @@ local p_color="%(?.%F{white}.%F{red})"
 autoload -Uz promptinit && promptinit
 prompt_daily_setup() {  # prompt_<style name>_setup() {
   PROMPT="%F{magenta}%n%f: %F{cyan}%~%f"$'\n'"$p_color"'%#%f '
-  RPROMPT='${memotxt}''${vcs_info_msg_0_}'' ($?) %F{229}[%T]%f'
+  #RPROMPT='${memotxt}''${vcs_info_msg_0_}'' ($?) %F{229}[%T]%f'
 }
 prompt_themes+=( daily )
 
@@ -150,13 +150,12 @@ prompt daily
 # ========================
 # {{{
 
-if [ -e ~/.config/nattoujam/dotfs/zsh/.aliases ]; then
-  . ~/.config/nattoujam/dotfs/zsh/.aliases
+if [ -e ~/.config/nattoujam/dotfs/modules/zsh/.aliases ]; then
+  . ~/.config/nattoujam/dotfs/modules/zsh/.aliases
 fi
 
-if [ -e ~/.config/nattoujam/dotfs/zsh/.zsh_private ]; then
-  . ~/.config/nattoujam/dotfs/zsh/.zsh_private
+if [ -e ~/.config/nattoujam/dotfs/modules/zsh/.zsh_private ]; then
+  . ~/.config/nattoujam/dotfs/modules/zsh/.zsh_private
 fi
 
 # }}}
-
