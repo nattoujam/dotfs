@@ -1,10 +1,10 @@
 # dotfs
 ## Setup
 ```bash
-mkdir -p ~/.config/nattoujam
-git clone https://github.com/nattoujam/dotfs.git ~/.config/nattoujam
-bash ~/.config/nattoujam/dotfs/scripts/bootstrap.sh
-bash ~/.config/nattoujam/dotfs/scripts/init.sh <profile>
+git clone https://github.com/nattoujam/dotfs.git ~/dotfs
+cd ~/dotfs
+bash scripts/bootstrap.sh
+bash scripts/init.sh <profile>
 
 zsh
 . Z
@@ -18,5 +18,5 @@ zsh
 
 ## Remove
 ```bash
-bash ~/.config/nattoujam/dotfs/scripts/unlink.sh <profile>
+bash scripts/unlink.sh <profile>
 ```

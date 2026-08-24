@@ -8,9 +8,9 @@ alias pbcopy='xsel --clipboard --input'
 alias lp='leafpad'
 alias ..='cd ..'
 alias -g Z='~/.zshrc'
-alias -g A='~/.config/nattoujam/dotfs/modules/zsh/.aliases'
-alias -g P='~/.config/nattoujam/dotfs/modules/zsh/.zsh_private'
-alias -g DOT='~/.config/nattoujam/dotfs'
+alias -g A="$DOTFS_ROOT/modules/zsh/.aliases"
+alias -g P="$DOTFS_ROOT/modules/zsh/.zsh_private"
+alias -g DOT="$DOTFS_ROOT"
 
 # -h option
 alias df='df -h'

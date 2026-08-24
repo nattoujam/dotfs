@@ -4,12 +4,6 @@ cd `dirname $0`
 cd ..
 path=`pwd`
 
-if [[ ! "$path" =~ .*"/.config/nattoujam/dotfs"$ ]]
-then
-  echo "dotfs must be place under ~/.config/nattoujam/: $path"
-  exit 1
-fi
-
 . "$path/scripts/lib.sh"
 
 profile=$1

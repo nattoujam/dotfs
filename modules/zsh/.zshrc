@@ -122,12 +122,16 @@ prompt daily
 # ========================
 # {{{
 
-if [ -e ~/.config/nattoujam/dotfs/modules/zsh/.aliases ]; then
-  . ~/.config/nattoujam/dotfs/modules/zsh/.aliases
+# このファイルはdotfsリポジトリからのsymlink。%Nで自身のパスを取り、
+# :Aでsymlinkを解決することでクローン先に依存せずリポジトリルートを求める
+export DOTFS_ROOT=${${(%):-%N}:A:h:h:h}
+
+if [ -e "$DOTFS_ROOT/modules/zsh/.aliases" ]; then
+  . "$DOTFS_ROOT/modules/zsh/.aliases"
 fi
 
-if [ -e ~/.config/nattoujam/dotfs/modules/zsh/.zsh_private ]; then
-  . ~/.config/nattoujam/dotfs/modules/zsh/.zsh_private
+if [ -e "$DOTFS_ROOT/modules/zsh/.zsh_private" ]; then
+  . "$DOTFS_ROOT/modules/zsh/.zsh_private"
 fi
 
 # }}}
