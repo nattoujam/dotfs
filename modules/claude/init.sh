@@ -10,3 +10,11 @@ link_if_needs $path/modules/claude/CLAUDE.md ~/.claude/CLAUDE.md
 
 echo "link $path/modules/claude/statusline.py"
 link_if_needs $path/modules/claude/statusline.py ~/.claude/statusline.py
+
+echo 'link output styles'
+mkdir -p ~/.claude/output-styles
+for style in "$path"/modules/claude/output-styles/*.md
+do
+  [ -e "$style" ] || continue
+  link_if_needs "$style" ~/.claude/output-styles/"$(basename "$style")"
+done
