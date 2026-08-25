@@ -13,3 +13,9 @@ do
   [ -e "$style" ] || continue
   unlink_if_needs ~/.claude/output-styles/"$(basename "$style")"
 done
+
+for rule in "$path"/modules/claude/rules/*.md
+do
+  [ -e "$rule" ] || continue
+  unlink_if_needs ~/.claude/rules/"$(basename "$rule")"
+done

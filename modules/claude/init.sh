@@ -18,3 +18,11 @@ do
   [ -e "$style" ] || continue
   link_if_needs "$style" ~/.claude/output-styles/"$(basename "$style")"
 done
+
+echo 'link rules'
+mkdir -p ~/.claude/rules
+for rule in "$path"/modules/claude/rules/*.md
+do
+  [ -e "$rule" ] || continue
+  link_if_needs "$rule" ~/.claude/rules/"$(basename "$rule")"
+done
