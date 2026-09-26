@@ -11,20 +11,21 @@ link_if_needs $path/modules/claude/CLAUDE.md ~/.claude/CLAUDE.md
 echo "link $path/modules/claude/statusline.py"
 link_if_needs $path/modules/claude/statusline.py ~/.claude/statusline.py
 
-echo 'link output styles'
-mkdir -p ~/.claude/output-styles
-for style in "$path"/modules/claude/output-styles/*.md
-do
-  [ -e "$style" ] || continue
-  link_if_needs "$style" ~/.claude/output-styles/"$(basename "$style")"
-done
-
 echo 'link rules'
 mkdir -p ~/.claude/rules
 for rule in "$path"/modules/claude/rules/*.md
 do
   [ -e "$rule" ] || continue
   link_if_needs "$rule" ~/.claude/rules/"$(basename "$rule")"
+done
+
+echo 'link skills'
+mkdir -p ~/.claude/skills
+for skill in "$path"/modules/claude/skills/*/
+do
+  [ -e "$skill" ] || continue
+  skill=${skill%/}
+  link_if_needs "$skill" ~/.claude/skills/"$(basename "$skill")"
 done
 
 echo 'link weekly-review'

@@ -8,16 +8,16 @@ path=`pwd`
 unlink_if_needs ~/.claude/CLAUDE.md
 unlink_if_needs ~/.claude/statusline.py
 
-for style in "$path"/modules/claude/output-styles/*.md
-do
-  [ -e "$style" ] || continue
-  unlink_if_needs ~/.claude/output-styles/"$(basename "$style")"
-done
-
 for rule in "$path"/modules/claude/rules/*.md
 do
   [ -e "$rule" ] || continue
   unlink_if_needs ~/.claude/rules/"$(basename "$rule")"
+done
+
+for skill in "$path"/modules/claude/skills/*/
+do
+  [ -e "$skill" ] || continue
+  unlink_if_needs ~/.claude/skills/"$(basename "$skill")"
 done
 
 if has_cmd systemctl && systemctl --user show-environment >/dev/null 2>&1
