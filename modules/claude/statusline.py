@@ -9,7 +9,10 @@ usage is the faint fill, the 5h (five_hour) usage is the strong fill drawn
 on top. Both start at 0%, so where they overlap the 5h color wins.
 """
 import json
+import os
 import sys
+import time
+from pathlib import Path
 from datetime import datetime
 
 # --- truecolor ANSI helpers -------------------------------------------------
@@ -85,6 +88,20 @@ def limit_bar(rate):
     return f"lim ▕{bar}▏ {five_txt}/{seven_txt} ({reset_txt})"
 
 
+RATE_FILE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "claude-code" / "rate_limits.json"
+
+
+def save_rate(rate):
+    """Persist the latest rate_limits so other tools (navigator) can show them without an API call."""
+    try:
+        RATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        tmp = RATE_FILE.with_suffix(".tmp")
+        tmp.write_text(json.dumps({**rate, "updated_at": int(time.time())}))
+        tmp.replace(RATE_FILE)
+    except OSError:
+        pass
+
+
 def main():
     try:
         data = json.load(sys.stdin)
@@ -102,6 +119,7 @@ def main():
     line2 = context_bar(ctx)
     rate = data.get("rate_limits")
     if rate:
+        save_rate(rate)
         line2 += "  " + limit_bar(rate)
     else:
         line2 += f"  lim {DIM}(待機中…){RESET}"
