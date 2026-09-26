@@ -1,0 +1,10 @@
+[Unit]
+Description=Claude Code long-term usage trend review
+OnFailure=claude-review-notify@%N.service
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/claude-weekly-review --trend --days 90
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=LANG=ja_JP.UTF-8
+TimeoutStartSec=60min

@@ -19,3 +19,22 @@ do
   [ -e "$rule" ] || continue
   unlink_if_needs ~/.claude/rules/"$(basename "$rule")"
 done
+
+if has_cmd systemctl && systemctl --user show-environment >/dev/null 2>&1
+then
+  for timer in "$path"/modules/claude/weekly-review/*.timer
+  do
+    [ -e "$timer" ] || continue
+    systemctl --user disable --now "$(basename "$timer")" 2>/dev/null || true
+  done
+fi
+unlink_if_needs ~/.local/bin/claude-weekly-review
+for unit in "$path"/modules/claude/weekly-review/*.service "$path"/modules/claude/weekly-review/*.timer
+do
+  [ -e "$unit" ] || continue
+  unlink_if_needs ~/.config/systemd/user/"$(basename "$unit")"
+done
+if has_cmd systemctl && systemctl --user show-environment >/dev/null 2>&1
+then
+  systemctl --user daemon-reload
+fi

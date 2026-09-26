@@ -1,0 +1,6 @@
+[Unit]
+Description=Notify failure of %i
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'notify-send -u critical -a claude-weekly-review "%i が失敗しました" "$$(journalctl --user -u %i -n 3 -o cat --no-pager)"'
