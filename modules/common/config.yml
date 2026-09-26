@@ -1,7 +1,7 @@
 git:
-  branchLogCmd: "git log --graph --color=always --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' {{branchName}} --"
   pagers:
     - colorArg: always
       pager: delta --dark --paging=never --side-by-side
+  branchLogCmd: "git log --graph --color=always --pretty='%Cred%h%Creset - %s %C(bold blue)<%an>%Creset %C(auto)%d%Creset' {{branchName}} --"
   allBranchesLogCmds:
-    - git log --graph --color=always --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all
+    - git log --graph --color=always --date=format:'%Y-%m-%d %H:%M' --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%cr>%Creset' --all
