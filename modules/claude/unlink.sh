@@ -29,6 +29,7 @@ then
   done
 fi
 unlink_if_needs ~/.local/bin/claude-weekly-review
+unlink_if_needs ~/.local/bin/claude-log-backup
 for unit in "$path"/modules/claude/weekly-review/*.service "$path"/modules/claude/weekly-review/*.timer
 do
   [ -e "$unit" ] || continue

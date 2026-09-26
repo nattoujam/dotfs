@@ -30,6 +30,7 @@ done
 echo 'link weekly-review'
 mkdir -p ~/.local/bin ~/.config/systemd/user
 link_if_needs $path/modules/claude/weekly-review/run.sh ~/.local/bin/claude-weekly-review
+link_if_needs $path/modules/claude/weekly-review/backup.sh ~/.local/bin/claude-log-backup
 for unit in "$path"/modules/claude/weekly-review/*.service "$path"/modules/claude/weekly-review/*.timer
 do
   [ -e "$unit" ] || continue

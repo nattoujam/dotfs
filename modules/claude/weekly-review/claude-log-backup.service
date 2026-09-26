@@ -1,0 +1,9 @@
+[Unit]
+Description=Back up Claude Code session logs
+OnFailure=claude-review-notify@%N.service
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/claude-log-backup
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=LANG=ja_JP.UTF-8
