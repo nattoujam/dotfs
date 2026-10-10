@@ -27,6 +27,7 @@ Commands:
                                           全文検索。ヒットした前後N行(既定2)のみ表示。
                                           本文全体は表示しないためcontext消費を抑えられる
                                           (--ids-only で id/category/title だけ表示)
+                                          (- で始まるキーワードは -- の後に置く: search -- -C)
   get <id> [--json]                      ノート本文を表示 (--json で全メタデータ)
   create --title TITLE [--category CAT] [--favorite]
                                           新規ノート作成。本文は標準入力から読む
@@ -92,18 +93,24 @@ cmd_list() {
 }
 
 cmd_search() {
-  [[ $# -ge 1 ]] || { echo "検索キーワードを指定してください" >&2; exit 1; }
-  local keyword="$1"; shift
-  local category="" context=2 grep_mode="-F" ids_only=0
+  local keyword="" category="" context=2 grep_mode="-F" ids_only=0
+  local positional=()
   while [[ $# -gt 0 ]]; do
     case "$1" in
       --category) category="$2"; shift 2 ;;
       -C|--context) context="$2"; shift 2 ;;
       --regex) grep_mode="-E"; shift ;;
       --ids-only) ids_only=1; shift ;;
-      *) echo "不明なオプション: $1" >&2; exit 1 ;;
+      --) shift; positional+=("$@"); break ;;
+      -*) echo "不明なオプション: $1" >&2; exit 1 ;;
+      *) positional+=("$1"); shift ;;
     esac
   done
+  case "${#positional[@]}" in
+    0) echo "検索キーワードを指定してください" >&2; exit 1 ;;
+    1) keyword="${positional[0]}" ;;
+    *) echo "キーワードは1つだけ指定してください (空白を含むなら引用符で囲む): ${positional[1]}" >&2; exit 1 ;;
+  esac
 
   local resp code body
   resp="$(api GET "/notes")"
@@ -144,10 +151,15 @@ cmd_search() {
 }
 
 cmd_get() {
-  [[ $# -ge 1 ]] || { echo "id を指定してください" >&2; exit 1; }
-  local id="$1"; shift
-  local as_json=0
-  [[ "${1:-}" == "--json" ]] && as_json=1
+  local id="" as_json=0
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --json) as_json=1; shift ;;
+      -*) echo "不明なオプション: $1" >&2; exit 1 ;;
+      *) id="$1"; shift ;;
+    esac
+  done
+  [[ -n "$id" ]] || { echo "id を指定してください" >&2; exit 1; }
 
   local resp code body
   resp="$(api GET "/notes/${id}")"
@@ -194,18 +206,18 @@ cmd_create() {
 }
 
 cmd_update() {
-  [[ $# -ge 1 ]] || { echo "id を指定してください" >&2; exit 1; }
-  local id="$1"; shift
-  local title="" category="" favorite=""
+  local id="" title="" category="" favorite=""
   while [[ $# -gt 0 ]]; do
     case "$1" in
       --title) title="$2"; shift 2 ;;
       --category) category="$2"; shift 2 ;;
       --favorite) favorite=true; shift ;;
       --no-favorite) favorite=false; shift ;;
-      *) echo "不明なオプション: $1" >&2; exit 1 ;;
+      -*) echo "不明なオプション: $1" >&2; exit 1 ;;
+      *) id="$1"; shift ;;
     esac
   done
+  [[ -n "$id" ]] || { echo "id を指定してください" >&2; exit 1; }
 
   local content=""
   local has_content=false
